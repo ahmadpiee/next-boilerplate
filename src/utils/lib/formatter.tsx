@@ -1,4 +1,3 @@
-import { en, id } from 'src/app/utils/lang'
 import moment from 'moment'
 
 // Date
@@ -41,10 +40,4 @@ export const FormatDate = (date: Date, format: string = 'llll') => {
   const newDate = moment(date)
   const formattedDate = newDate.format(format)
   return formattedDate
-}
-
-export const localize = (locale: string, string: string) => {
-  const translate = locale === 'en' ? en : id
-
-  return translate[string]
 }

@@ -1,6 +1,8 @@
 'use client'
 
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import logger from 'redux-logger'
 import {
   persistReducer,
   persistStore,
@@ -16,7 +18,6 @@ import {
   combineMiddleware,
   combineReducer,
 } from '@store/reducers'
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { isNotProduction } from '@utils/helpers/process-env'
 
 export type AppDispatch = typeof store.dispatch
@@ -35,13 +36,23 @@ const reducers = persistReducer(persistConfig, combineReducer)
 
 export const store = configureStore({
   reducer: reducers,
-  devTools: !isNotProduction,
+  devTools: isNotProduction,
   middleware: (defaultMiddleware) => {
-    return defaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }).concat(combineMiddleware)
+    if (isNotProduction) {
+      return defaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      })
+        .concat(logger)
+        .concat(combineMiddleware)
+    } else {
+      return defaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      }).concat(combineMiddleware)
+    }
   },
 })
 

@@ -1,0 +1,9 @@
+{
+  "server-component": {
+    "welcome": "Selamat Datang id"
+  },
+  "counter": {
+    "increment": "Increment id",
+    "decrement": "Decrement id"
+  }
+}

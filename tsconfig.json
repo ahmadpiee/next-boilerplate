@@ -22,15 +22,23 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],
-      "@styles/*": ["src/styles/*"],
-      "@config/*": ["src/config/*"],
-      "@store/*": ["src/store/*"],
       "@hooks/*": ["src/hooks/*"],
+      "@locales/*": ["src/locales/*"],
+      "@store/*": ["src/store/*"],
+      "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"],
       "@pages/*": ["src/app/pages/*"],
       "@public/*": ["public/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next-sitemap.config.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "next-sitemap.config.js",
+    "i18n.js",
+    "i18n-config.js"
+  ],
   "exclude": ["node_modules"]
 }

@@ -13,3 +13,9 @@ body,
     @apply flex-auto my-4 mx-60;
   }
 }
+
+@layer components {
+  .flex-center {
+    @apply flex min-h-screen justify-center items-center;
+  }
+}
